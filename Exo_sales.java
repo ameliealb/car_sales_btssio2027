@@ -10,15 +10,27 @@ public class Exo_sales {
 
         int [][] arraySales = new int[employee.length][model.length] ;
 
+        int [] carPrice = new int[model.length] ;
+
+        for(int c = 0 ; c < model.length ; c++){
+            System.out.println("Saisissez le prix de : " + model[c]);
+
+            carPrice[c] = scan.nextInt();
+        }
+
         for(int i = 0 ; i < employee.length ; i++){
             System.out.println("Saisissez le nombre de ventes effectuées par l'employé.e " + employee[i]);
+
+            int totalSales = 0;
 
             for(int j = 0 ; j < model.length ; j++){
                 System.out.println("Par modèle :" + model[j]);
 
                 arraySales[i][j] = scan.nextInt();
             }
+
         }
+
         System.out.print("\t\t"); //tabulations
         for (int j = 0; j < model.length; j++) {
             System.out.print(model[j] + "\t");
@@ -33,5 +45,36 @@ public class Exo_sales {
             }
             System.out.println();
         }
+
+        System.out.println();
+
+        for (int j = 0 ; j < model.length ; j++){
+            int totalSales = 0 ;
+
+            for (int i = 0 ; i < employee.length ; i++){
+                totalSales = totalSales += arraySales[i][j];
+            }
+
+            System.out.print(totalSales + " ");
+        }
+
+        int globalSales = 0;
+
+        System.out.println("Chiffre d'affaires par voiture : ");
+
+        for (int i = 0 ; i < employee.length ; i++){
+            int salesByCar = 0;
+
+            for (int j = 0 ; j < model.length ; j++){
+                salesByCar += arraySales[i][j] * carPrice[j];
+            }
+
+            System.out.println("Chiffre d'affaires pour l'employé.e " + employee[i] + " : " + salesByCar);
+
+            globalSales += salesByCar;
+        }
+
+        System.out.println("Chiffre d'affaires total : " + globalSales);
+
     }
 }
